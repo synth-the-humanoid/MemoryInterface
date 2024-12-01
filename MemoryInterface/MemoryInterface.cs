@@ -171,7 +171,7 @@ namespace MemoryInterface
             byte currentByte = 0;
             do
             {
-                if (!ReadByte(address, ref currentByte))
+                if (!ReadByte(address + i++, ref currentByte))
                 {
                     return false;
                 }
