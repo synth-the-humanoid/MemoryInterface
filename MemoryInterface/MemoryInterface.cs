@@ -28,7 +28,7 @@ namespace MemoryInterface
             {
                 Process target = matchingProcesses[0];
                 // if we find a matching process to the name, we open a handle with all the permissions we need
-                processHandle = OpenProcess(PROCESS_VM_OPERATION | PROCESS_VM_READ | PROCESS_VM_WRITE, true, target.Id);
+                processHandle = OpenProcess(PROCESS_VM_OPERATION | PROCESS_VM_READ | PROCESS_VM_WRITE, false, target.Id);
                 ProcessModule targetModule = target.MainModule;
                 if (targetModule != null)
                 {
@@ -54,7 +54,7 @@ namespace MemoryInterface
             }
         }
 
-        // ensures we are not leaving handles open amateurishly
+        // ensures we are not leaving handles open amateurishly. ensure you call close after you're done with the memory interface
         public void Close()
         {
             if(IsOpen)
